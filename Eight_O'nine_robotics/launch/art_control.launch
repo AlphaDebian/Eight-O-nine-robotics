@@ -1,0 +1,10 @@
+<launch>
+
+  <!-- Load joint controller configurations from YAML file to parameter server -->
+  <rosparam file="$(find artpark)/config/control.yaml" command="load" />
+
+  <!-- load the controllers -->
+  <node name="controller_spawner" pkg="controller_manager" type="spawner" respawn="false"
+    output="screen" ns="/" args="sweeper_position_controller foam_position_controller servo_position_controller gripper_position_controller joint_state_controller"/>
+
+</launch>

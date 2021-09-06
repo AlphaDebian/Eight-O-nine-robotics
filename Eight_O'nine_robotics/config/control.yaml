@@ -1,0 +1,51 @@
+ Art:
+ # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 50  
+
+ # Position Controllers ---------------------------------------
+  sweeper_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_sweeper
+    pid: {p: 100.0, i: 3.0, d: 1.0}
+  foam_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_foam
+    pid: {p: 100.0, i: 3.0, d: 1.0}
+  servo_position_controller:
+    type: velocity_controllers/JointPositionController
+    joint: joint_servo_gripper
+    pid: {p: 20.0, i: 0.3, d: 0.1}
+  gripper_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_gripper
+    pid: {p: 100.0, i: 3.0, d: 1.0}
+  flap_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_flap
+    pid: {p: 100.0, i: 3.0, d: 1.0}
+  # wheel1_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: joint_wheel1
+  #   pid: {p: 100.0, i: 3.0, d: 0.1}
+  # wheel2_position_controller:
+  #   type: effort_controllers/JointPositionController
+  #   joint: joint_wheel2
+  #   pid: {p: 100.0, i: 3.0, d: 0.1}
+  gripper_left_position_controller:
+    type: velocity_controllers/JointPositionController
+    joint: joint_gripper_left
+    pid: {p: 20.0, i: 0.3, d: 0.1}
+  gripper_right_position_controller:
+    type: velocity_controllers/JointPositionController
+    joint: joint_gripper_right
+    pid: {p: 20.0, i: 0.3, d: 0.1}
+  gear_left_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_gear_left
+    pid: {p: 100.0, i: 3.0, d: 1.0}
+  gear_right_position_controller:
+    type: effort_controllers/JointPositionController
+    joint: joint_gear_right
+    pid: {p: 100.0, i: 3.0, d: 1.0}

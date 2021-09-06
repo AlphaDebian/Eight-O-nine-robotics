@@ -1,0 +1,210 @@
+<link name="link_flap">
+    <inertial>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <mass value="0.01" />
+      <inertia ixx="0.000001" ixy="0" ixz="0" iyy="0.000001" iyz="0" izz="0.000001" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_flap.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_flap.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+<joint name="joint_flap" type="continuous">
+    <origin xyz="0.2373 -0.0331 0.4403" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="link_flap" />
+    <axis xyz="0 -1 0" />
+  </joint> 
+
+  <gazebo reference="link_flap">
+        <material>Gazebo/Green</material>
+   </gazebo>
+
+
+
+<transmission name="tran5">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_flap">
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor5">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/PositionJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+
+  
+flap_position_controller:
+    type: position_controllers/JointPositionController
+    joint: joint_flap
+    pid: {p: 100.0, i: 3.0, d: 1.0}
+
+
+joint_flap: {p: 100.0, i: 3.0, d: 1.0}
+
+
+  <link name="link_servo_gripper">
+    <inertial>
+      <origin xyz="0.0056935 -0.0001808 0.044811" rpy="0 0 0" />
+      <mass value="0.005" />
+      <inertia ixx="4.9306E-05" ixy="-1.6278E-09" ixz="-8.4092E-07" iyy="4.8314E-05" iyz="1.9885E-08" izz="2.0275E-05" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_servo_gripper.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_servo_gripper.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="joint_servo_gripper" type="revolute">
+    <origin xyz="0.08 0.5373 0.9285" rpy="0 0 0" />
+    <parent link="base_link" />
+    <child link="link_servo_gripper" />
+    <axis xyz="0 0 -1" />
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="5" />
+  </joint>
+
+  <gazebo reference="link_servo_gripper">
+        <kp>1000</kp>
+        <kd>1000</kd>
+        <mu1>0.0</mu1>
+        <mu2>0.0</mu2>
+        <material>Gazebo/White</material>
+  </gazebo>
+
+  <link name="link_gripper_left">
+    <inertial>
+      <origin xyz="0.039765 -0.021066 0.0066152" rpy="0 0 0" />
+      <mass value="0.002" />
+      <inertia ixx="9.4935E-07" ixy="1.6743E-06" ixz="-3.3323E-08" iyy="5.2839E-06" iyz="1.6234E-08" izz="6.0992E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_gripper_left.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_gripper_left.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="joint_gripper_left" type="revolute">
+    <origin xyz="0.0560000000000215 -0.00873501320112924 0.0362767948396809" rpy="0 0 0" />
+    <parent link="link_servo_gripper" />
+    <child link="link_gripper_left" />
+    <axis xyz="0 -0.0198992999000344 -0.999801989327631" />
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="5" />
+  </joint>
+
+  <gazebo reference="link_gripper_left">
+        <kp>1000</kp>
+        <kd>1000</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Black</material>
+  </gazebo>
+
+  <link name="link_gripper_right">
+    <inertial>
+      <origin xyz="0.043814 0.022018 0.0059238" rpy="0 0 0" />
+      <mass value="0.002" />
+      <inertia ixx="9.3617E-07" ixy="-1.7441E-06" ixz="3.4713E-08" iyy="4.7626E-06" iyz="1.6046E-08" izz="5.5684E-06" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_gripper_right.STL" />
+      </geometry>
+      <material name="">
+        <color rgba="0.75294 0.75294 0.75294 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://artpark/meshes/link_gripper_right.STL" />
+      </geometry>
+    </collision>
+  </link>
+
+
+  <joint name="joint_gripper_right" type="revolute">
+    <origin xyz="0.0560000000000211 0.00825831588544101 0.0357724668483028" rpy="0 0 0" />
+    <parent link="link_servo_gripper" />
+    <child link="link_gripper_right" />
+    <axis xyz="0 -0.0198992999000344 -0.999801989327631" />
+    <limit lower="-3.14" upper="3.14" effort="10" velocity="5" />
+  </joint>
+
+  <gazebo reference="link_gripper_right">
+        <kp>1000</kp>
+        <kd>1000</kd>
+        <mu1>10.0</mu1>
+        <mu2>10.0</mu2>
+        <material>Gazebo/Black</material>
+  </gazebo>
+
+  <transmission name="tran3">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_servo_gripper">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor3">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran8">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_gripper_left">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor8">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
+
+  <transmission name="tran9">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="joint_gripper_right">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="motor9">
+      <mechanicalReduction>1</mechanicalReduction>
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </actuator>
+  </transmission>
