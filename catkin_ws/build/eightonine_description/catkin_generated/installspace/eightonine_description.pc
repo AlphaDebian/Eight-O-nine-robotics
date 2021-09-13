@@ -1,0 +1,8 @@
+prefix=/home/user/container_ws/install
+
+Name: eightonine_description
+Description: Description of eightonine_description
+Version: 1.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
