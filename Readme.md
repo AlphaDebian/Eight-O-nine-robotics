@@ -22,6 +22,7 @@ docker run -it --name test-1 -v /home/mh/eight_o_nine_robotics/catkin_ws:/home/u
 roslaunch artpark spawn_urdf.launch
 ```
 Open new terminal space using ``` docker exec -it test-1 bash ```and run
+
 [Note: Make the file executable before launching using the following command]
 ```
 rosrun laser_scan.py
