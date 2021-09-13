@@ -1,0 +1,2 @@
+artpark:eightonine_description
+-DCATKIN_DEVEL_PREFIX=/home/user/container_ws/devel -DCMAKE_INSTALL_PREFIX=/home/user/container_ws/install -G Unix Makefiles
